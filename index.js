@@ -55,39 +55,35 @@ app.post("/quote/new", async (req, res) => {
 });
 
 app.get("/dbTest", async (req, res) => {
-
-let sql = "SELECT CURDATE()";
-let rows = await executeSQL(sql);
-res.send(rows);
+  let sql = "SELECT CURDATE()";
+  let rows = await executeSQL(sql);
+  res.send(rows);
 });//dbTest
 
 //functions
 async function executeSQL(sql, params){
   return new Promise (function (resolve, reject) {
     pool.query(sql, params, function (err, rows, fields) {
-    if (err) throw err;
-      resolve(rows);
+      if (err) throw err;
+        resolve(rows);
     });
   });
 }//executeSQL
 
 function dbConnection(){
-
    const pool  = mysql.createPool({
-      connectionLimit: 10,
-      host: "u6354r3es4optspf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      user: "mp26jo8kppunxiix",
-      password: "ik1iml4j3uexk2bp",
-      database: "jkvs50o7ha454ro4"
-
+      host: "ao9moanwus0rjiex.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      user: "wgmp9bmqkgbq2vgh",
+      password: "a9iv66p43fsrtz7g",
+      database: "f5b3hurtj9m99eoe",
+      port: "3306"
    }); 
-
    return pool;
 
 } //dbConnection
 
 //start server
-app.listen(3000, () => {
+app.listen(process.env.PORT || 5000, () => {
 console.log("Expresss server running...")
 } )
 
