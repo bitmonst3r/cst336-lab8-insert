@@ -36,20 +36,35 @@ app.post("/author/new", async (req, res) => {
 
 });
 
-app.get("/quote/new", async (req, res) => {
-  res.render("newQuotes");
+app.get("/authors", async (req, res) => {
+  let sql = `SELECT authorId, firstName, lastName FROM q_authors ORDER BY lastName ASC`;
+  let rows = await executeSQL(sql);
+  res.render("displayAuthors", {"authors": rows});
+});
+
+app.get("/quotes", async (req, res) => {
+  let sql = `SELECT authorId, quote, firstName, lastName FROM q_authors NATURAL JOIN q_quotes ORDER BY quote ASC`;
+  let rows = await executeSQL(sql);
+  res.render("displayQuotes", {"quotes": rows});
+});
+
+app.get("/quote/addNew", async (req, res) => {
+  let sql = `SELECT authorId, firstName, lastName FROM q_authors ORDER BY lastName ASC`;
+  let sql2 = `SELECT DISTINCT category FROM q_quotes ORDER BY category ASC`;
+  let rows = await executeSQL(sql);
+  let rows2 = await executeSQL(sql2);
+  res.render("newQuotes", {"authors": rows, "categories": rows2});
 });
 
 app.post("/quote/new", async (req, res) => {
-  let nquote = req.body.quote;
-  let qcat = req.body.category;
-  let like = req.body.likes;
+  let q = req.body.quote;
+  let c = req.body.category;
+  let l = req.body.likes;
+  let id = req.body.authorId;
 
-  let sql = "INSERT INTO q_quotes (quote, category, likes) VALUES ( ?, ?, ?)";
-  
-  let params = [nquote, qcat, like];
+  let sql = `INSERT INTO q_quotes (quote, authorId, category, likes) VALUES ( ?, ?, ?, ?)`;
+  let params = [q, id, c, l];
   let rows = await executeSQL(sql, params);
-
   res.render("newQuotes", {"message": "Quote added!"});
 
 });

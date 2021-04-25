@@ -3,46 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 8: INSERT SQL Command</title>
+  <title>Lab 8: Add Quote</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
-  <h1> Adding a new Quote </h1>
+  <h1> Add new Quote </h1>
+
   <form method="POST" action="/quote/new">
-    New Quote: <br>
-     <textarea name="quote" cols="50" rows="15"></textarea><br><br><br>
+   
+    Quote:<br>
+    <textarea type="text" name="quote" cols="50" rows="15"></textarea><br><br>
 
-    Author: <br>
-    <select name="nauthor"><br>
-    <option> Select Author </option>
-    <option> Mushroom Man </option> 
-    <option> Baby Yoshi </option> 
-    <option> Robert Frost </option> 
-    <option> Emily Dickinson </option> 
+    Category:
+    <select name="category">
+    <option>Select Category</option>
+      <% for (i of categories) { %>
+      <option value=<%= i.category %> ><%= i.category %> </option>
+      <% } %>
     </select>
-    <br>
-
-    Category: <br>
-    <select name="category"><br>
-    <option> Select Category </option> 
-    <option> Video Game </option> 
-    <option> Funny </option> 
-    <option> Poetic </option> 
-    <option> Inspirational </option> 
-    </select>
-    <br>
+    <br><br>
 
     Likes:
-    <input type="number" name="likes"><br>
-    
-    <button>Add Quote</button>
+    <input type="text" name="likes"><br><br>
+
+    Author:
+    <select name="authorId">
+    <option>Select Author</option>
+    <% for (i of authors) { %>
+      <option value=<%=i.authorId%>><%= i.firstName %> <%= i.lastName %> </option>
+    <% } %>
+    </select>
+    <br><br>
+    <button class="btn btn-outline-primary">Add Quote</button>
+
   </form><br>
 
   <% if (typeof message != "undefined") { %>
      <h3><%= message %></h3>
   <% } %>
+
+   
   
 </body>
 </html>
-
-<!-- Quote, Author, Category, Likes -->
