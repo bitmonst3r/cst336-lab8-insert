@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 8: INSERT SQL Command</title>
+</head>
+<body>
+
+  <h1> Adding a new Author </h1>
+  <form method="POST" action="/author/new">
+    First Name:
+    <input type="text" name="firstName"><br><br>
+    Last Name:
+    <input type="text" name="lastName"><br><br>
+    Date of Birth:<br>
+    <input type="date" name="dob"><br><br>
+    Date of Death:<br>
+    <input type="date" name="dod"><br><br>
+    Sex:<br>
+    <input type="radio" name="sex" value="M">
+    <label for="M">Male</label>
+    <input type="radio" name="sex" value="F">
+    <label for="F">Female</label>
+    <input type="radio" name="sex" value="D">
+    <label for="D">Decline</label>
+    <br><br>
+    Profession:<br>
+    <input type="text" name="profession"><br><br>
+    Country:<br>
+    <input type="text" name="country"><br><br>
+    Portrait:<br>
+    <input type="text" name="portrait"><br><br>
+    Biography:<br>
+    <textarea name="bio" cols="50" rows="15"></textarea><br><br>
+    <button>Add Author</button>
+  </form><br>
+
+  <% if (typeof message != "undefined") { %>
+     <h3><%= message %></h3>
+  <% } %>
+  
+</body>
+</html>

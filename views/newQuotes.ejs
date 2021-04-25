@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 8: INSERT SQL Command</title>
+</head>
+<body>
+
+  <h1> Adding a new Quote </h1>
+  <form method="POST" action="/quote/new">
+    New Quote: <br>
+     <textarea name="quote" cols="50" rows="15"></textarea><br><br><br>
+
+    Author: <br>
+    <select name="nauthor"><br>
+    <option> Select Author </option>
+    <option> Mushroom Man </option> 
+    <option> Baby Yoshi </option> 
+    <option> Robert Frost </option> 
+    <option> Emily Dickinson </option> 
+    </select>
+    <br>
+
+    Category: <br>
+    <select name="category"><br>
+    <option> Select Category </option> 
+    <option> Video Game </option> 
+    <option> Funny </option> 
+    <option> Poetic </option> 
+    <option> Inspirational </option> 
+    </select>
+    <br>
+
+    Likes:
+    <input type="number" name="likes"><br>
+    
+    <button>Add Quote</button>
+  </form><br>
+
+  <% if (typeof message != "undefined") { %>
+     <h3><%= message %></h3>
+  <% } %>
+  
+</body>
+</html>
+
+<!-- Quote, Author, Category, Likes -->
